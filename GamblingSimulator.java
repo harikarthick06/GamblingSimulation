@@ -4,12 +4,22 @@ public class GamblingSimulator {
 
     public static void main(String[] args) {
         System.out.println("Welcome to Gambling Simulation Problem");
-        startGambling();
+        playOneBet();
     }
 
-    public static void startGambling() {
+    public static void playOneBet() {
         int cash = STAKE;
-        System.out.println("Starting cash: $" + cash);
-        System.out.println("Bet per game: $" + BET);
+
+        int outcome = (int) (Math.random() * 2);
+
+        if (outcome == 1) {
+            cash += BET;
+            System.out.println("Gambler won $1");
+        } else {
+            cash -= BET;
+            System.out.println("Gambler lost $1");
+        }
+
+        System.out.println("Current cash: $" + cash);
     }
 }
