@@ -1,25 +1,33 @@
 public class GamblingSimulator {
     static final int STAKE = 100;
     static final int BET = 1;
+    static final int WIN_LIMIT = 150;
+    static final int LOSS_LIMIT = 50;
 
     public static void main(String[] args) {
         System.out.println("Welcome to Gambling Simulation Problem");
-        playOneBet();
+        playForOneDay();
     }
 
-    public static void playOneBet() {
+    public static void playForOneDay() {
         int cash = STAKE;
 
-        int outcome = (int) (Math.random() * 2);
+        while (cash > LOSS_LIMIT && cash < WIN_LIMIT) {
+            int outcome = (int) (Math.random() * 2);
 
-        if (outcome == 1) {
-            cash += BET;
-            System.out.println("Gambler won $1");
-        } else {
-            cash -= BET;
-            System.out.println("Gambler lost $1");
+            if (outcome == 1) {
+                cash += BET;
+            } else {
+                cash -= BET;
+            }
         }
 
-        System.out.println("Current cash: $" + cash);
+        if (cash == WIN_LIMIT) {
+            System.out.println("Gambler won for the day.");
+        } else {
+            System.out.println("Gambler lost for the day.");
+        }
+
+        System.out.println("End of day cash: $" + cash);
     }
 }
